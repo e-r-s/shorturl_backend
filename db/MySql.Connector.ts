@@ -16,7 +16,10 @@ export const init = () => {
       user: dataSource.DB_USER,
       password: dataSource.DB_PASSWORD,
       database: dataSource.DB_NAME,
+      port: Number(dataSource.DB_PORT),
     });
+
+    console.log(dataSource.DB_NAME);
 
      
     console.debug('MySql Adapter Pool generated successfully');

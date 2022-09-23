@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=DEV npx ts-node index.ts",
-    "start": "set -a && source .env && NODE_ENV=PRODUCTION npx ts-node index.ts",
+    "start": "npx ts-node index.ts",
+    "start2": "set -a && source .env && NODE_ENV=PRODUCTION npx ts-node index.ts",
     "start:watch": "nodemon index.ts",
     "test": "NODE_ENV=TEST jest"
   },
@@ -23,6 +24,7 @@
     "helmet": "^6.0.0",
     "mysql": "^2.18.1",
     "nanoid": "^3.3.4",
+    "save": "^2.5.0",
     "stream": "0.0.2",
     "supertest": "^6.2.4"
   },

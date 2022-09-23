@@ -1,3 +1,8 @@
+import * as dotenv from 'dotenv';
+dotenv.config({ path: "./.env" });
+
+
+
 export const DATA_SOURCES = {
     mySqlDataSource: {
       DB_HOST: process.env.MYSQL_DB_HOST,
