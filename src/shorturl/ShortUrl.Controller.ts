@@ -1,7 +1,8 @@
 import * as ShortUrlService from './ShortUrl.Service';
+import * as AuthService from '../auth/Auth.Service';
 
 import { Request, RequestHandler, Response } from 'express';
-import { IShortUrl, IGetShortUrlByUidReq, IGetShortUrlByUrlReq, IAddShortUrlReq } from './ShortUrl.Model';
+import { IShortUrl, IGetShortUrlByUidReq, IAddShortUrlReq } from './ShortUrl.Model';
 
  
 
@@ -112,7 +113,9 @@ export const findAndRedirect: RequestHandler = async (req: IGetShortUrlByUidReq,
       return;
     }
 
-    const shortUrl = await ShortUrlService.insertShortUrl(url);
+    const user = await AuthService.getUser(url) || {userGroupId:''};
+
+    const shortUrl = await ShortUrlService.insertShortUrl(url, user.userGroupId);
 
     if(shortUrl){
       res.status(200).json( 

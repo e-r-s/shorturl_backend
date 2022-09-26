@@ -14,8 +14,17 @@ import errorHandler from './ErrorHandler.Middleware';
 
 
 import { APIS } from './vars.config';
+import { readFileSync } from 'fs';
+import * as https from 'https'; 
 
 
+
+const options = {
+    key: readFileSync('./ssl/key.pem'),
+    cert: readFileSync('./ssl/cert.pem'),
+};
+ 
+ 
 
 
 const apiConfig = APIS.main;
@@ -48,9 +57,14 @@ export const initApp = async ()=>{
 
 export const initApi = async ()=>{ 
     await initApp();
-    app.listen(port, () => {
+
+    https.createServer(options, app).listen(port , function(){
         console.log(`App listening at http://localhost:${port}`)
-    });
+      });
+
+    // app.listen(port, () => {
+    //     console.log(`App listening at http://localhost:${port}`)
+    // });
 }
 
 if(process.env.NODE_ENV!='TEST'){ 

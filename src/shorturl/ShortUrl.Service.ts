@@ -55,7 +55,7 @@ export const getShortUrlByUId = async (uid: IShortUrl['uid']): Promise<IShortUrl
   * @param {string} url 
   * @returns {IShortUrl} 
   */
- export const insertShortUrl = async (url: string): Promise<IShortUrl>  => {
+ export const insertShortUrl = async (url: string, ownerGroupId:string): Promise<IShortUrl>  => {
      
     let hash = sha1(url).toString();
     
@@ -65,12 +65,12 @@ export const getShortUrlByUId = async (uid: IShortUrl['uid']): Promise<IShortUrl
     else{
         let uid = generateShortId(); 
         
-        const result = insertRecord(ShortUrlQueries.Add, [ uid, url, hash ]);
+        const result = insertRecord(ShortUrlQueries.Add, [ uid, url, hash, ownerGroupId ]);
        
         if(result){
             ShortUrlCache.addUId(uid); 
             ShortUrlCache.addHash(hash); 
-            return  { uid, url, hash };
+            return  { uid, url, hash, ownerGroupId };
         }
         else{
             return null;

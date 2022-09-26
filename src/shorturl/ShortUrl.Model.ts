@@ -3,7 +3,7 @@ import { Request } from 'express';
 
 
 export interface IShortUrlSettings {
-    uid: string;
+    urlUId: string;
     enableProxy: boolean;
     enableTracking: boolean;  // browser, time, location, ip, language, mobile/pc, orientation, screen size, fingerprint, ref, history.length, 
     enablePassword: boolean; 
@@ -17,9 +17,8 @@ export interface IShortUrlSettings {
     citeText: string;  
     password: string;  
     customDomain: string;  
-    addvertisementHtml: string;  //advertisement page html
-    addvertisementTimeLimit: number;  //time limit to skip 
-    headerHTML:string;   //read from 
+    addvertisementImageUrl: string;  //advertisement page html
+    addvertisementTimeLimit: number;  //time limit to skip  
     title:string;
     description:string;
     imageUrl:string;  
@@ -29,8 +28,9 @@ export interface IShortUrl {
     uid: string;
     url: string;
     hash: string; 
+    ownerGroupId: string; 
 }
 
 export interface IGetShortUrlByUidReq extends Request<{ uid: IShortUrl['uid'] }> { }
-export interface IGetShortUrlByUrlReq extends Request<{ url: IShortUrl['url'] }> { }
+export interface IGetShortUrlByGroupIdReq extends Request<{ ownerGroupId: IShortUrl['ownerGroupId'] }> { }
 export interface IAddShortUrlReq extends Request{}

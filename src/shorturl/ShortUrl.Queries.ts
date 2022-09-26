@@ -23,7 +23,7 @@ export const ShortUrlQueries = {
     `,
   
     Add: `
-    INSERT INTO SHORTURL.SHORTURL (uid, url, hash)
-      VALUES (?, ?, ?);
+    INSERT INTO SHORTURL.SHORTURL (uid, url, hash, ownerGroupId)
+      VALUES (?, ?, ?, ?);
     `
   };
